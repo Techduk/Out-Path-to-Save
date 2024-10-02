@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwmlhxbf0jbm7"]
+
+[ext_resource type="PackedScene" uid="uid://d108iwfen5x7p" path="res://scenes/save_character.tscn" id="1_1ajrk"]
+[ext_resource type="Script" path="res://assets/scripts/GameScript.gd" id="1_ug2cy"]
+[ext_resource type="PackedScene" uid="uid://4j1bc3ps34jk" path="res://scenes/back_hud.tscn" id="1_yji2k"]
+[ext_resource type="PackedScene" uid="uid://bye2xv6edex85" path="res://scenes/window.tscn" id="2_5b6q8"]
+[ext_resource type="PackedScene" uid="uid://bny7voq16k4h3" path="res://scenes/WindowEmpty.tscn" id="2_aej4v"]
+[ext_resource type="PackedScene" uid="uid://cb1p52ikidd6q" path="res://scenes/windowMusic.tscn" id="6_xmsb1"]
+
+[sub_resource type="Gradient" id="Gradient_emxys"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rhnly"]
+gradient = SubResource("Gradient_emxys")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clrer"]
+size = Vector2(1280, 25.229)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ug2cy")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_yji2k")]
+layer = -10
+visible = false
+
+[node name="Floor" type="CharacterBody2D" parent="."]
+position = Vector2(53, 532)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(586.5, 162.686)
+scale = Vector2(4.99609, 25.1862)
+texture = SubResource("GradientTexture1D_rhnly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(587, 162.385)
+shape = SubResource("RectangleShape2D_clrer")
+one_way_collision = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Container" parent="." instance=ExtResource("2_aej4v")]
+offset_left = 520.0
+offset_top = 256.0
+offset_right = 616.0
+offset_bottom = 356.0
+scale = Vector2(2, 2)
+
+[node name="Window" parent="." instance=ExtResource("2_5b6q8")]
+position = Vector2(200, 472)
+
+[node name="Window2" parent="." instance=ExtResource("6_xmsb1")]
+position = Vector2(893, 368)
+
+[node name="SaveCharacter" parent="." instance=ExtResource("1_1ajrk")]
+position = Vector2(437, 21)

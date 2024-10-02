@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d108iwfen5x7p"]
+
+[ext_resource type="Texture2D" uid="uid://dtuikp5kr5bbo" path="res://assets/images/Save.png" id="1_prqxy"]
+[ext_resource type="Script" path="res://assets/scripts/save_character.gd" id="1_yt4hg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ts5sn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_prqxy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ms3ga"]
+size = Vector2(12, 14)
+
+[node name="SaveCharacter" type="Area2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_yt4hg")
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ts5sn")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ms3ga")

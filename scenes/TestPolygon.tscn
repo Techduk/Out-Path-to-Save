@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwmlhxbf0jbm7"]
+
+[ext_resource type="PackedScene" uid="uid://d108iwfen5x7p" path="res://scenes/save_character.tscn" id="1_1ajrk"]
+[ext_resource type="Script" path="res://assets/scripts/GameScript.gd" id="1_ug2cy"]
+[ext_resource type="PackedScene" uid="uid://4j1bc3ps34jk" path="res://scenes/back_hud.tscn" id="1_yji2k"]
+[ext_resource type="PackedScene" uid="uid://bye2xv6edex85" path="res://scenes/window.tscn" id="2_5b6q8"]
+[ext_resource type="PackedScene" uid="uid://cb1p52ikidd6q" path="res://scenes/windowMusic.tscn" id="6_xmsb1"]
+[ext_resource type="PackedScene" uid="uid://dy4xpkid3h348" path="res://scenes/windowNotepad.tscn" id="7_1c0ms"]
+
+[sub_resource type="Gradient" id="Gradient_emxys"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0941176, 0.0784314, 0.145098, 1)
+metadata/_snap_count = 13
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rhnly"]
+gradient = SubResource("Gradient_emxys")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clrer"]
+size = Vector2(1280, 25.229)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ug2cy")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_yji2k")]
+layer = -10
+
+[node name="Floor" type="CharacterBody2D" parent="."]
+position = Vector2(53, 544.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(586.5, 162.686)
+scale = Vector2(4.99609, 25.1862)
+texture = SubResource("GradientTexture1D_rhnly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+visible = false
+position = Vector2(587, 162.71)
+shape = SubResource("RectangleShape2D_clrer")
+one_way_collision = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Window" parent="." instance=ExtResource("2_5b6q8")]
+position = Vector2(296, 408)
+
+[node name="Window2" parent="." instance=ExtResource("6_xmsb1")]
+position = Vector2(1045, 536)
+
+[node name="SaveCharacter" parent="." instance=ExtResource("1_1ajrk")]
+position = Vector2(616, 168)
+
+[node name="Window3" parent="." instance=ExtResource("7_1c0ms")]
+position = Vector2(973, 216)

@@ -1,0 +1,40 @@
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://d3dwq4ch468c2"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_0i6xn"]
+resource_name = "Reverb"
+predelay_feedback = 0.39
+room_size = 1.0
+damping = 1.0
+hipass = 1.0
+dry = 0.0
+wet = 1.0
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_t4nqe"]
+resource_name = "Distortion"
+mode = 1
+pre_gain = 19.26
+drive = 0.78
+post_gain = -12.84
+
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_5w3m2"]
+resource_name = "EQ6"
+band_db/32_hz = 8.7
+band_db/100_hz = 8.7
+band_db/320_hz = -27.3
+band_db/1000_hz = -29.4
+band_db/3200_hz = -60.0
+band_db/10000_hz = -60.0
+
+[resource]
+bus/1/name = &"Music"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -8.00903
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_0i6xn")
+bus/1/effect/0/enabled = false
+bus/1/effect/1/effect = SubResource("AudioEffectDistortion_t4nqe")
+bus/1/effect/1/enabled = false
+bus/1/effect/2/effect = SubResource("AudioEffectEQ6_5w3m2")
+bus/1/effect/2/enabled = true

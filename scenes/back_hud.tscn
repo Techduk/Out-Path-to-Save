@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://4j1bc3ps34jk"]
+
+[ext_resource type="Shader" path="res://assets/shaders/MakeMePixel.gdshader" id="1_sa1vn"]
+[ext_resource type="Texture2D" uid="uid://b0hp404bfcs30" path="res://assets/images/wallpaper_8bit.png" id="2_c23i7"]
+[ext_resource type="VideoStream" path="res://assets/videos/winterbus.ogv" id="3_tmbph"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b1edy"]
+shader = ExtResource("1_sa1vn")
+shader_parameter/resolution = 32.0
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_b1edy")
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(31.9809, 17.9957)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_c23i7")
+expand_mode = 1
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+stream = ExtResource("3_tmbph")
+autoplay = true
+expand = true
+loop = true

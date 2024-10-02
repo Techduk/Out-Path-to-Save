@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://deop54j7ut74o"]
+
+[ext_resource type="Texture2D" uid="uid://cx2av8wvxletf" path="res://assets/images/Window.png" id="1_613ag"]
+[ext_resource type="Shader" path="res://assets/shaders/MakeMePixel.gdshader" id="2_4tcci"]
+[ext_resource type="Texture2D" uid="uid://cby1d8rmgjisc" path="res://assets/images/plushi.png" id="3_267ub"]
+[ext_resource type="FontFile" uid="uid://dpn5ojmw5tfo7" path="res://assets/fonts/Monocraft.otf" id="4_xiu0k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu0el"]
+shader = ExtResource("2_4tcci")
+shader_parameter/resolution = 32.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hmga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgw3e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qdgcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu3ys"]
+size = Vector2(63.8975, 7)
+
+[node name="MeshInstance2D" type="MeshInstance2D"]
+
+[node name="SpriteOfWindow" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0.102501, -29.5)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_613ag")
+
+[node name="TextureRect" type="TextureRect" parent="SpriteOfWindow"]
+material = SubResource("ShaderMaterial_uu0el")
+offset_left = -310.0
+offset_top = -250.0
+offset_right = 310.0
+offset_bottom = 330.0
+texture = ExtResource("3_267ub")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit" type="TextEdit" parent="SpriteOfWindow"]
+offset_left = -300.0
+offset_top = -320.0
+offset_right = 120.0
+offset_bottom = -270.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_xiu0k")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2hmga")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tgw3e")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_qdgcg")
+text = "plushi.png"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+metadata/_edit_use_anchors_ = true
+
+[node name="GroundBox" type="CollisionShape2D" parent="."]
+light_mask = 2
+position = Vector2(0.0512505, -59.5)
+shape = SubResource("RectangleShape2D_gu3ys")
+one_way_collision = true
