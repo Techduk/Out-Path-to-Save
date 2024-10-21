@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwmlhxbf0jbm7"]
+[gd_scene load_steps=11 format=3 uid="uid://dwmlhxbf0jbm7"]
 
 [ext_resource type="PackedScene" uid="uid://d108iwfen5x7p" path="res://scenes/save_character.tscn" id="1_1ajrk"]
 [ext_resource type="Script" path="res://assets/scripts/GameScript.gd" id="1_ug2cy"]
@@ -18,22 +18,7 @@ metadata/_snap_count = 13
 gradient = SubResource("Gradient_emxys")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clrer"]
-size = Vector2(1346, 25.229)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ho2"]
-size = Vector2(1346, 792)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_8uxok"]
-a = Vector2(340.116, -265.315)
-b = Vector2(340.116, 465.685)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_da3l6"]
-a = Vector2(1686.12, -265.315)
-b = Vector2(1686.12, 465.685)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_m6wb0"]
-a = Vector2(340.116, -265.315)
-b = Vector2(1686.12, -265.315)
+size = Vector2(1280, 25.229)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_ug2cy")
@@ -45,7 +30,7 @@ layer = -10
 anchor_mode = 0
 
 [node name="Window" parent="." instance=ExtResource("2_5b6q8")]
-position = Vector2(299, 378)
+position = Vector2(296, 408)
 
 [node name="Window2" parent="." instance=ExtResource("6_xmsb1")]
 position = Vector2(1045, 536)
@@ -62,8 +47,10 @@ scale = Vector2(4.99609, 25.1862)
 texture = SubResource("GradientTexture1D_rhnly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+visible = false
 position = Vector2(587, 162.71)
 shape = SubResource("RectangleShape2D_clrer")
+one_way_collision = true
 
 [node name="Button" type="Button" parent="Floor"]
 offset_left = -53.0
@@ -73,28 +60,4 @@ offset_bottom = 175.0
 icon = ExtResource("7_2blxa")
 
 [node name="SaveCharacter" parent="." instance=ExtResource("1_1ajrk")]
-position = Vector2(300, 200)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(640, 360)
-shape = SubResource("RectangleShape2D_s8ho2")
-debug_color = Color(1, 1, 1, 0.419608)
-
-[node name="BordersOfScreen" type="CharacterBody2D" parent="."]
-visible = false
-position = Vector2(-373.116, 229.315)
-
-[node name="Left" type="CollisionShape2D" parent="BordersOfScreen"]
-shape = SubResource("SegmentShape2D_8uxok")
-
-[node name="Right" type="CollisionShape2D" parent="BordersOfScreen"]
-shape = SubResource("SegmentShape2D_da3l6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BordersOfScreen"]
-shape = SubResource("SegmentShape2D_m6wb0")
-
-[node name="Window4" parent="." instance=ExtResource("7_1c0ms")]
-position = Vector2(775, 620)
-
-[connection signal="body_entered" from="." to="." method="in_screen"]
-[connection signal="body_exited" from="." to="." method="out_of_screen"]
+position = Vector2(616, 168)

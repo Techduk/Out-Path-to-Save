@@ -37,4 +37,4 @@ bus/1/effect/0/enabled = false
 bus/1/effect/1/effect = SubResource("AudioEffectDistortion_t4nqe")
 bus/1/effect/1/enabled = false
 bus/1/effect/2/effect = SubResource("AudioEffectEQ6_5w3m2")
-bus/1/effect/2/enabled = true
+bus/1/effect/2/enabled = false

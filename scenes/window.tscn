@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bye2xv6edex85"]
+[gd_scene load_steps=18 format=3 uid="uid://bye2xv6edex85"]
 
 [ext_resource type="Script" path="res://assets/scripts/Window.gd" id="1_1vxut"]
 [ext_resource type="Texture2D" uid="uid://cx2av8wvxletf" path="res://assets/images/Window.png" id="2_w6ew0"]
@@ -21,6 +21,19 @@ size = Vector2(45.6667, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5sgp"]
 size = Vector2(63.795, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0vkg"]
+size = Vector2(64, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjp8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0kylj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0msv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwj63"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xoecq"]
 
 [node name="Window" type="CharacterBody2D"]
 position = Vector2(85, 88)
@@ -78,15 +91,37 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Signal" type="Area2D" parent="."]
 
-[node name="ClickBox" type="CollisionShape2D" parent="Signal"]
+[node name="MoveBox" type="CollisionShape2D" parent="Signal"]
+visible = false
 position = Vector2(-9.16667, -30)
 shape = SubResource("RectangleShape2D_4frm6")
 debug_color = Color(0, 0.643137, 0.282353, 0.419608)
 
 [node name="GroundBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.102501, -30)
 shape = SubResource("RectangleShape2D_x5sgp")
 one_way_collision = true
 
+[node name="InGroundBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-6.25849e-07, 33.6667)
+shape = SubResource("RectangleShape2D_w0vkg")
+one_way_collision = true
+
+[node name="SwipeOut" type="Button" parent="."]
+offset_left = 13.6667
+offset_top = -34.0
+offset_right = 23.6667
+offset_bottom = -24.0
+scale = Vector2(0.565, 0.8)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vjp8m")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0kylj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_a0msv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wwj63")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xoecq")
+
+[connection signal="area_entered" from="Signal" to="." method="window_entered"]
+[connection signal="area_exited" from="Signal" to="." method="window_exited"]
 [connection signal="mouse_entered" from="Signal" to="." method="mouse_entered"]
 [connection signal="mouse_exited" from="Signal" to="." method="mouse_exited"]

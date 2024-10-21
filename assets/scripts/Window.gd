@@ -4,6 +4,8 @@ var dragging = false
 var drag_offset = Vector2()
 var mouse_in = false
 
+var block_multi_moving = false
+
 # Ссылка на родителя, который управляет всеми окнами
 @onready var window_manager = get_parent()
 
@@ -13,16 +15,22 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed() and mouse_in:
-			dragging = true
-			drag_offset = get_viewport().get_mouse_position() - position
 			bring_to_top()  # Поднимаем окно вверх сразу, когда оно захвачено
+			print(block_multi_moving)
+			
+			if block_multi_moving == false and mouse_in == true:
+				dragging = true
+				drag_offset = get_viewport().get_mouse_position() - position
+			elif z_index == 0:
+				dragging = true
+				drag_offset = get_viewport().get_mouse_position() - position
 		else:
 			dragging = false
 
 	elif event is InputEventMouseMotion:
 		if dragging:
 			position = get_viewport().get_mouse_position() - drag_offset
-		print (z_index)
+		#print(z_index)
 
 func mouse_entered():
 	mouse_in = true
@@ -41,3 +49,9 @@ func bring_to_top():
 
 func _on_swipe_out_pressed():
 	hide()
+
+func window_entered(area):
+	block_multi_moving = true
+
+func window_exited(area):
+	block_multi_moving = false

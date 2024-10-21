@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb1p52ikidd6q"]
+[gd_scene load_steps=17 format=3 uid="uid://cb1p52ikidd6q"]
 
 [ext_resource type="Script" path="res://assets/scripts/Window.gd" id="1_u5d4g"]
 [ext_resource type="Texture2D" uid="uid://cx2av8wvxletf" path="res://assets/images/Window.png" id="2_rd3dd"]
@@ -17,6 +17,19 @@ size = Vector2(45.6667, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acsfw"]
 size = Vector2(63.795, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0f2q"]
+size = Vector2(64, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6kh6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_igkgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1ocm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kp8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njxcp"]
 
 [node name="Window" type="CharacterBody2D"]
 position = Vector2(85, 88)
@@ -79,13 +92,14 @@ offset_bottom = 330.0
 stream = ExtResource("5_2006c")
 volume_db = -15.0
 autoplay = true
+paused = true
 expand = true
 loop = true
 bus = &"Music"
 
 [node name="Signal" type="Area2D" parent="."]
 
-[node name="ClickBox" type="CollisionShape2D" parent="Signal"]
+[node name="MoveBox" type="CollisionShape2D" parent="Signal"]
 position = Vector2(-9.16667, -30)
 shape = SubResource("RectangleShape2D_ek8bx")
 debug_color = Color(0, 0.643137, 0.282353, 0.419608)
@@ -95,5 +109,25 @@ position = Vector2(0.102501, -30)
 shape = SubResource("RectangleShape2D_acsfw")
 one_way_collision = true
 
+[node name="InGroundBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 33.5)
+shape = SubResource("RectangleShape2D_n0f2q")
+one_way_collision = true
+
+[node name="SwipeOut" type="Button" parent="."]
+offset_left = 13.6667
+offset_top = -34.0
+offset_right = 23.6667
+offset_bottom = -24.0
+scale = Vector2(0.565, 0.8)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h6kh6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_igkgs")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d1ocm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8kp8d")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_njxcp")
+
+[connection signal="area_entered" from="Signal" to="." method="window_entered"]
+[connection signal="area_exited" from="Signal" to="." method="window_exited"]
 [connection signal="mouse_entered" from="Signal" to="." method="mouse_entered"]
 [connection signal="mouse_exited" from="Signal" to="." method="mouse_exited"]
