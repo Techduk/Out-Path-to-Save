@@ -1,4 +1,18 @@
-extends Area2D
+extends Node
+
+func _ready():
+	DiscordRPC.app_id = 1297940397573668927 # Application ID
+	DiscordRPC.details = "Totally in WIP"
+	DiscordRPC.state = "Made by JCFunduk"
+	DiscordRPC.large_image = "example_game" # Image key from "Art Assets"
+	DiscordRPC.large_image_text = "hi!!1!"
+	DiscordRPC.small_image = "" # Image key from "Art Assets"
+	DiscordRPC.small_image_text = "Totally in WIP"
+
+	#DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system()) # "02:46 elapsed"
+# DiscordRPC.end_timestamp = int(Time.get_unix_time_from_system()) + 3600 # +1 hour in unix time / "01:00:00 remaining"
+
+	DiscordRPC.refresh() # Always refresh after changing the values!
 
 func _process(delta):
 	if Input.is_action_just_pressed("fullscreen"):
