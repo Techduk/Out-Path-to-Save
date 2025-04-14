@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://wq8g0ispw50r"]
+
+[ext_resource type="Script" path="res://scenes/Widget/ClockWidgetScript.gd" id="1_vnudo"]
+[ext_resource type="FontFile" uid="uid://dpn5ojmw5tfo7" path="res://assets/fonts/Monocraft.otf" id="2_slb2g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2w02u"]
+line_spacing = 0.0
+font = ExtResource("2_slb2g")
+font_size = 32
+
+[node name="ClockWidget" type="Node2D"]
+script = ExtResource("1_vnudo")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 184.0
+offset_bottom = 48.0
+mouse_filter = 2
+action_mode = 0
+button_mask = 0
+keep_pressed_outside = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 176.0
+offset_bottom = 41.0
+text = "12:24:32"
+label_settings = SubResource("LabelSettings_2w02u")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwmlhxbf0jbm7"]
+[gd_scene load_steps=20 format=3 uid="uid://dwmlhxbf0jbm7"]
 
 [ext_resource type="PackedScene" uid="uid://d108iwfen5x7p" path="res://scenes/save_character.tscn" id="1_1ajrk"]
 [ext_resource type="Script" path="res://assets/scripts/GameScript.gd" id="1_ug2cy"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bye2xv6edex85" path="res://scenes/window.tscn" id="2_5b6q8"]
 [ext_resource type="PackedScene" uid="uid://cb1p52ikidd6q" path="res://scenes/windowMusic.tscn" id="6_xmsb1"]
 [ext_resource type="PackedScene" uid="uid://dy4xpkid3h348" path="res://scenes/windowNotepad.tscn" id="7_1c0ms"]
-[ext_resource type="Texture2D" uid="uid://cfl6a665ihcss" path="res://icon.svg" id="7_2blxa"]
+[ext_resource type="PackedScene" uid="uid://wq8g0ispw50r" path="res://scenes/Widget/clock_widget.tscn" id="8_qgcnw"]
 
 [sub_resource type="Gradient" id="Gradient_emxys"]
 interpolation_mode = 1
@@ -17,8 +17,17 @@ metadata/_snap_count = 13
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rhnly"]
 gradient = SubResource("Gradient_emxys")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_clrer"]
-size = Vector2(1346, 25.229)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4n28"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rrww0"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bbjs6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vk2jo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_40hcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8ho2"]
 size = Vector2(1346, 792)
@@ -34,6 +43,9 @@ b = Vector2(1686.12, 465.685)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m6wb0"]
 a = Vector2(340.116, -265.315)
 b = Vector2(1686.12, -265.315)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clrer"]
+size = Vector2(1346, 25.229)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_ug2cy")
@@ -51,31 +63,34 @@ position = Vector2(299, 378)
 position = Vector2(1045, 536)
 
 [node name="Window3" parent="." instance=ExtResource("7_1c0ms")]
-position = Vector2(973, 216)
+position = Vector2(978, 220)
 
 [node name="Floor" type="CharacterBody2D" parent="."]
 position = Vector2(53, 544.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(586.5, 162.686)
-scale = Vector2(4.99609, 25.1862)
+position = Vector2(587, 159.265)
+scale = Vector2(5, 32.0291)
 texture = SubResource("GradientTexture1D_rhnly")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(587, 162.71)
-shape = SubResource("RectangleShape2D_clrer")
 
 [node name="Button" type="Button" parent="Floor"]
 offset_left = -53.0
-offset_top = 150.0
-offset_right = -31.0
+offset_top = 143.0
+offset_right = -22.0
 offset_bottom = 175.0
-icon = ExtResource("7_2blxa")
+theme_override_font_sizes/font_size = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v4n28")
+theme_override_styles/hover = SubResource("StyleBoxLine_rrww0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bbjs6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vk2jo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_40hcp")
+text = "⨻"
 
 [node name="SaveCharacter" parent="." instance=ExtResource("1_1ajrk")]
 position = Vector2(300, 200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(640, 360)
 shape = SubResource("RectangleShape2D_s8ho2")
 debug_color = Color(1, 1, 1, 0.419608)
@@ -93,8 +108,13 @@ shape = SubResource("SegmentShape2D_da3l6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BordersOfScreen"]
 shape = SubResource("SegmentShape2D_m6wb0")
 
-[node name="Window4" parent="." instance=ExtResource("7_1c0ms")]
-position = Vector2(775, 620)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(640, 707.46)
+shape = SubResource("RectangleShape2D_clrer")
+
+[node name="ClockWidget" parent="." instance=ExtResource("8_qgcnw")]
+position = Vector2(41, 39)
 
 [connection signal="body_entered" from="." to="." method="in_screen"]
 [connection signal="body_exited" from="." to="." method="out_of_screen"]

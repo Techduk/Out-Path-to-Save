@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var emoting = false
+var noclip = TextEditorScript.text_focused
 
 const SPEED = 175.0
 const JUMP_VELOCITY = -300.0
@@ -8,26 +9,27 @@ const JUMP_VELOCITY = -300.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
 func _physics_process(delta):
+	print(TextEditorScript.text_focused)
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	# Add the gravity.
-	if not is_on_floor() and emoting == false:
+	if not is_on_floor() and emoting == false and TextEditorScript.text_focused == false:
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("move_up") and is_on_floor() and emoting == false:
+	if Input.is_action_just_pressed("move_up") and is_on_floor() and emoting == false and TextEditorScript.text_focused == false:
 		velocity.y = JUMP_VELOCITY
 		$Anim.play("jump")
 	
-	if direction and emoting == false:
+	if direction and emoting == false and TextEditorScript.text_focused == false:
 		velocity.x = direction * SPEED
 		if is_on_floor():
 			$Anim.play("walk")
 		else:
 			$Anim.play("jump")
-	elif emoting == false:
+	elif emoting == false and TextEditorScript.text_focused == false:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if is_on_floor():
 			$Anim.play("idle")
@@ -36,7 +38,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("move_right"):
 		$Anim.flip_h = false
-	if Input.is_action_pressed("move_left") and emoting == false:
+	if Input.is_action_pressed("move_left") and emoting == false and TextEditorScript.text_focused == false:
 		$Anim.flip_h = abs(scale.x)
 	
 	if is_on_floor():

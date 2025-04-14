@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://wq8g0ispw50r"]
+
+[ext_resource type="Script" path="res://scenes/Widget/ClockWidgetScript.gd" id="1_vnudo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2w02u"]
+font_size = 32
+
+[node name="ClockWidget" type="Node2D"]
+script = ExtResource("1_vnudo")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 301.0
+offset_bottom = 84.0
+text = "123121231231gd"
+label_settings = SubResource("LabelSettings_2w02u")

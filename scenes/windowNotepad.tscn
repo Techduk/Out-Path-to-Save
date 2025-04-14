@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dy4xpkid3h348"]
+[gd_scene load_steps=17 format=3 uid="uid://dy4xpkid3h348"]
 
 [ext_resource type="Script" path="res://assets/scripts/Window.gd" id="1_yxa3m"]
 [ext_resource type="Texture2D" uid="uid://cx2av8wvxletf" path="res://assets/images/Window.png" id="2_h8qhp"]
+[ext_resource type="Script" path="res://assets/scripts/TextEditorScript.gd" id="4_qqv77"]
 [ext_resource type="FontFile" uid="uid://dpn5ojmw5tfo7" path="res://assets/fonts/Monocraft.otf" id="5_po7ac"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jvhxu"]
@@ -9,28 +10,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_835cd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qucb5"]
-
-[sub_resource type="GDScript" id="GDScript_twtvb"]
-resource_name = "TextEditorScript"
-script/source = "extends TextEdit
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_focus_entered():
-	set_editable(true)
-	print(\"focus in\")
-
-func _on_focus_exited():
-	set_editable(false)
-	print(\"focus out\")
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4frm6"]
 size = Vector2(45.6667, 8)
@@ -50,6 +29,9 @@ size = Vector2(64, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpff2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwsa0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab07i"]
+size = Vector2(1093.33, 638.667)
 
 [node name="Window" type="CharacterBody2D"]
 position = Vector2(85, 88)
@@ -122,7 +104,7 @@ deselect_on_focus_loss_enabled = false
 drag_and_drop_selection_enabled = false
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
-script = SubResource("GDScript_twtvb")
+script = ExtResource("4_qqv77")
 metadata/_edit_use_anchors_ = true
 
 [node name="Signal" type="Area2D" parent="."]
@@ -157,10 +139,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_gujhp")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpff2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uwsa0")
 
+[node name="InputDefenderArena" type="Area2D" parent="."]
+position = Vector2(0, 3.66667)
+
+[node name="InputDefenderBox" type="CollisionShape2D" parent="InputDefenderArena"]
+position = Vector2(0.333344, -1.66667)
+shape = SubResource("RectangleShape2D_ab07i")
+
 [connection signal="focus_entered" from="SpriteOfWindow/TextEditor" to="SpriteOfWindow/TextEditor" method="_on_focus_entered"]
-[connection signal="focus_exited" from="SpriteOfWindow/TextEditor" to="SpriteOfWindow/TextEditor" method="_on_focus_exited"]
 [connection signal="area_entered" from="Signal" to="." method="window_entered"]
 [connection signal="area_exited" from="Signal" to="." method="window_exited"]
 [connection signal="mouse_entered" from="Signal" to="." method="mouse_entered"]
 [connection signal="mouse_exited" from="Signal" to="." method="mouse_exited"]
 [connection signal="pressed" from="SwipeOut" to="." method="_on_swipe_out_pressed"]
+[connection signal="input_event" from="InputDefenderArena" to="SpriteOfWindow/TextEditor" method="_on_input_defender_arena_input_event"]

@@ -92,7 +92,6 @@ offset_bottom = 330.0
 stream = ExtResource("5_2006c")
 volume_db = -15.0
 autoplay = true
-paused = true
 expand = true
 loop = true
 bus = &"Music"
